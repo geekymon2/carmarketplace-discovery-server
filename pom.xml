@@ -35,6 +35,7 @@
 		</dependency>
 	</dependencies>
 	<build>
+		<finalName>discovery-server</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
