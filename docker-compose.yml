@@ -4,7 +4,7 @@ services:
     restart: always
     image: "geekymon2/cm-discovery-server"
     environment: 
-      ARTIFACT_NAME: "${ARTIFACT_NAME}"
+      ARTIFACT_NAME: "discovery-server"
       SPRING_PROFILES_ACTIVE: "${SPRING_PROFILES_ACTIVE}"
       ENVIRONMENT: "${ENVIRONMENT}"
     #local setup
