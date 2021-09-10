@@ -1,0 +1,15 @@
+version: "3.9"
+services: 
+  web: 
+    restart: always
+    image: "geekymon2/cm-discovery-server"
+    environment: 
+      ARTIFACT_NAME: "${ARTIFACT_NAME}"
+      SPRING_PROFILES_ACTIVE: "${SPRING_PROFILES_ACTIVE}"
+      ENVIRONMENT: "${ENVIRONMENT}"
+    #local setup
+    #container runs on port 8080
+    #container exposing port 8880
+    #container overrides APP_PORT and APP_PORT_CONTAINER when deployed
+    ports:
+      - "${APP_PORT:-8880}:${APP_PORT_CONTAINER:-8080}"
