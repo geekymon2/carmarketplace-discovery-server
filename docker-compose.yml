@@ -8,8 +8,8 @@ services:
       SPRING_PROFILES_ACTIVE: "${SPRING_PROFILES_ACTIVE}"
       ENVIRONMENT: "${ENVIRONMENT}"
     #local setup
-    #container runs on port 8080
-    #container exposing port 8880
+    #container runs on port 8761
+    #container exposing port 8761
     #container overrides APP_PORT and APP_PORT_CONTAINER when deployed
     ports:
-      - "${APP_PORT:-8880}:${APP_PORT_CONTAINER:-8080}"
+      - "${APP_PORT:-8761}:${APP_PORT_CONTAINER:-8761}"
