@@ -1,6 +1,7 @@
 version: "3.9"
 services: 
   cm-discovery-server: 
+    hostname: "discovery-sever"
     restart: always
     image: "geekymon2/cm-discovery-server"
     build: .
