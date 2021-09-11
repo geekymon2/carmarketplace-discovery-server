@@ -14,4 +14,4 @@ services:
     #container exposing port 8880
     #container overrides APP_PORT and APP_PORT_CONTAINER when deployed
     ports:
-      - "${APP_PORT:-8880}:${APP_PORT_CONTAINER:-8080}"
+      - "${APP_PORT:-8761}:${APP_PORT_CONTAINER:-8761}"
