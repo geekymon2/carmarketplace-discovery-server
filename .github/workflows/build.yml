@@ -1,4 +1,4 @@
-name: build and deploy
+name: build
 
 on:
   push:
@@ -71,64 +71,4 @@ jobs:
         DOCKERHUB_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         DOCKERHUB_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
         DOCKERHUB_REPOSITORY: geekymon2/${{ steps.docker.outputs.IMAGE_NAME }}   
-        README_FILEPATH: service/README.md   
-  
-  deployserviceci:
-    name: deploy CI
-    runs-on: [self-hosted, ci]
-    steps:
-    - name: checkout service
-      uses: actions/checkout@v2 
-      with:
-        path: service
-    - name: read docker properties
-      uses: madhead/read-java-properties@latest
-      id: docker
-      with:
-        file: service/docker.properties
-        all: true
-    - name: apply CI environment profile
-      run: printf '\nENVIRONMENT=ci\nSPRING_PROFILES_ACTIVE=ci' >> service/.env
-    - name: load env
-      uses: c-py/action-dotenv-to-setenv@v2
-      with:
-        env-file: service/.env
-    - name: first stop containers
-      working-directory: ./service
-      run: docker-compose -f "docker-compose.yml" stop     
-    - name: pull the latest image from dockerhub
-      run: docker pull geekymon2/${{ steps.docker.outputs.IMAGE_NAME }}
-    - name: start docker compose
-      working-directory: ./service
-      run: docker-compose -f "docker-compose.yml" up -d
-    needs: buildservice
-
-  deployservicesit:
-    name: deploy SIT
-    runs-on: [self-hosted, sit]
-    steps:
-    - name: checkout service
-      uses: actions/checkout@v2     
-      with:
-        path: service
-    - name: read docker properties
-      uses: madhead/read-java-properties@latest
-      id: docker
-      with:
-        file: service/docker.properties
-        all: true
-    - name: apply SIT environment profile
-      run: printf '\nENVIRONMENT=sit\nSPRING_PROFILES_ACTIVE=sit' >> service/.env
-    - name: load env
-      uses: c-py/action-dotenv-to-setenv@v2
-      with:
-        env-file: service/.env
-    - name: first stop containers
-      working-directory: ./service
-      run: docker-compose -f "docker-compose.yml" stop
-    - name: pull the latest image from dockerhub
-      run: docker pull geekymon2/${{ steps.docker.outputs.IMAGE_NAME }}
-    - name: start docker compose
-      working-directory: ./service
-      run: docker-compose -f "docker-compose.yml" up -d
-    needs: buildservice
+        README_FILEPATH: service/README.md
