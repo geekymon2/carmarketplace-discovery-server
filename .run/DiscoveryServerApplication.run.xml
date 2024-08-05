@@ -2,6 +2,7 @@
   <configuration default="false" name="DiscoveryServerApplication" type="Application" factoryName="Application">
     <envs>
       <env name="SPRING_PROFILES_ACTIVE" value="local" />
+      <env name="ENVIRONMENT" value="localhost" />	  
     </envs>
     <option name="MAIN_CLASS_NAME" value="com.geekymon2.carmarketplace.discoveryserver.DiscoveryServerApplication" />
     <module name="discovery-server" />
